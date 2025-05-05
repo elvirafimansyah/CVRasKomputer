@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CashierElviraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_detailtransaksi">
+    <Key>
+      <PropertyRef Name="iddetailtransaksi" />
+    </Key>
+    <Property Name="iddetailtransaksi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kodetransaksi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kodeproduk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namaproduk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="hargadijual" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="jumlahproduk" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="subtotal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="tbl_produk" Relationship="Self.FK_tbl_detailtransaksi_tbl_produk" FromRole="tbl_detailtransaksi" ToRole="tbl_produk" />
+    <NavigationProperty Name="tbl_transaksi" Relationship="Self.FK_tbl_detailtransaksi_tbl_transaksi" FromRole="tbl_detailtransaksi" ToRole="tbl_transaksi" />
+  </EntityType>
+  <EntityType Name="tbl_pelanggan">
+    <Key>
+      <PropertyRef Name="kodepelanggan" />
+    </Key>
+    <Property Name="kodepelanggan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namapelanggan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nohppelanggan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="alamatpelanggan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_transaksi" Relationship="Self.FK_tbl_transaksi_tbl_pelanggan" FromRole="tbl_pelanggan" ToRole="tbl_transaksi" />
+  </EntityType>
+  <EntityType Name="tbl_produk">
+    <Key>
+      <PropertyRef Name="kodeproduk" />
+    </Key>
+    <Property Name="kodeproduk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namaproduk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="hargaproduk" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="satuanproduk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="jumlahproduk" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="tbl_detailtransaksi" Relationship="Self.FK_tbl_detailtransaksi_tbl_produk" FromRole="tbl_produk" ToRole="tbl_detailtransaksi" />
+  </EntityType>
+  <EntityType Name="tbl_transaksi">
+    <Key>
+      <PropertyRef Name="kodetransaksi" />
+    </Key>
+    <Property Name="kodetransaksi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tanggaltransaksi" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="jam" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="kodeuser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kodepelanggan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dibayar" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="kembalian" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="tbl_detailtransaksi" Relationship="Self.FK_tbl_detailtransaksi_tbl_transaksi" FromRole="tbl_transaksi" ToRole="tbl_detailtransaksi" />
+    <NavigationProperty Name="tbl_pelanggan" Relationship="Self.FK_tbl_transaksi_tbl_pelanggan" FromRole="tbl_transaksi" ToRole="tbl_pelanggan" />
+    <NavigationProperty Name="tbl_user" Relationship="Self.FK_tbl_transaksi_tbl_user" FromRole="tbl_transaksi" ToRole="tbl_user" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="kodeuser" />
+    </Key>
+    <Property Name="kodeuser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namauser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="passworduser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="leveluser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_transaksi" Relationship="Self.FK_tbl_transaksi_tbl_user" FromRole="tbl_user" ToRole="tbl_transaksi" />
+  </EntityType>
+  <Association Name="FK_tbl_detailtransaksi_tbl_produk">
+    <End Role="tbl_produk" Type="Self.tbl_produk" Multiplicity="1" />
+    <End Role="tbl_detailtransaksi" Type="Self.tbl_detailtransaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_produk">
+        <PropertyRef Name="kodeproduk" />
+      </Principal>
+      <Dependent Role="tbl_detailtransaksi">
+        <PropertyRef Name="kodeproduk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_detailtransaksi_tbl_transaksi">
+    <End Role="tbl_transaksi" Type="Self.tbl_transaksi" Multiplicity="1" />
+    <End Role="tbl_detailtransaksi" Type="Self.tbl_detailtransaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_transaksi">
+        <PropertyRef Name="kodetransaksi" />
+      </Principal>
+      <Dependent Role="tbl_detailtransaksi">
+        <PropertyRef Name="kodetransaksi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_transaksi_tbl_pelanggan">
+    <End Role="tbl_pelanggan" Type="Self.tbl_pelanggan" Multiplicity="1" />
+    <End Role="tbl_transaksi" Type="Self.tbl_transaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_pelanggan">
+        <PropertyRef Name="kodepelanggan" />
+      </Principal>
+      <Dependent Role="tbl_transaksi">
+        <PropertyRef Name="kodepelanggan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_transaksi_tbl_user">
+    <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1" />
+    <End Role="tbl_transaksi" Type="Self.tbl_transaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user">
+        <PropertyRef Name="kodeuser" />
+      </Principal>
+      <Dependent Role="tbl_transaksi">
+        <PropertyRef Name="kodeuser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CashierElviraEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tbl_detailtransaksi" EntityType="Self.tbl_detailtransaksi" />
+    <EntitySet Name="tbl_pelanggan" EntityType="Self.tbl_pelanggan" />
+    <EntitySet Name="tbl_produk" EntityType="Self.tbl_produk" />
+    <EntitySet Name="tbl_transaksi" EntityType="Self.tbl_transaksi" />
+    <EntitySet Name="tbl_user" EntityType="Self.tbl_user" />
+    <AssociationSet Name="FK_tbl_detailtransaksi_tbl_produk" Association="Self.FK_tbl_detailtransaksi_tbl_produk">
+      <End Role="tbl_produk" EntitySet="tbl_produk" />
+      <End Role="tbl_detailtransaksi" EntitySet="tbl_detailtransaksi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_detailtransaksi_tbl_transaksi" Association="Self.FK_tbl_detailtransaksi_tbl_transaksi">
+      <End Role="tbl_transaksi" EntitySet="tbl_transaksi" />
+      <End Role="tbl_detailtransaksi" EntitySet="tbl_detailtransaksi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_transaksi_tbl_pelanggan" Association="Self.FK_tbl_transaksi_tbl_pelanggan">
+      <End Role="tbl_pelanggan" EntitySet="tbl_pelanggan" />
+      <End Role="tbl_transaksi" EntitySet="tbl_transaksi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_transaksi_tbl_user" Association="Self.FK_tbl_transaksi_tbl_user">
+      <End Role="tbl_user" EntitySet="tbl_user" />
+      <End Role="tbl_transaksi" EntitySet="tbl_transaksi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
