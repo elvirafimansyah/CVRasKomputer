@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_raskomputerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_customer">
+    <Key>
+      <PropertyRef Name="kodecustomer" />
+    </Key>
+    <Property Name="kodecustomer" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namacustomer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="alamatcustomer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nohpcustomer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_detailtransaksi">
+    <Key>
+      <PropertyRef Name="iddetailtransaksi" />
+    </Key>
+    <Property Name="kodetransaksi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namaproduk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namacustomer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="harga" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="qty" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="grandtotal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="iddetailtransaksi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="tbl_produk">
+    <Key>
+      <PropertyRef Name="kodeproduk" />
+    </Key>
+    <Property Name="kodeproduk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namaproduk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="hargaproduk" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="jumlahproduk" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="satuanproduk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_transaksi">
+    <Key>
+      <PropertyRef Name="kodetransaksi" />
+    </Key>
+    <Property Name="kodetransaksi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tanggal" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="namacustomer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dibayar" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="kembalian" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="kodeuser" />
+    </Key>
+    <Property Name="kodeuser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namauser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="passworduser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="leveluser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="db_raskomputerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" />
+    <EntitySet Name="tbl_detailtransaksi" EntityType="Self.tbl_detailtransaksi" />
+    <EntitySet Name="tbl_produk" EntityType="Self.tbl_produk" />
+    <EntitySet Name="tbl_transaksi" EntityType="Self.tbl_transaksi" />
+    <EntitySet Name="tbl_user" EntityType="Self.tbl_user" />
+  </EntityContainer>
+</Schema>

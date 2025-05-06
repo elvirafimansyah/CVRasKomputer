@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_raskomputerModelStoreContainer" CdmEntityContainer="db_raskomputerEntities">
+    <EntitySetMapping Name="tbl_customer">
+      <EntityTypeMapping TypeName="db_raskomputerModel.tbl_customer">
+        <MappingFragment StoreEntitySet="tbl_customer">
+          <ScalarProperty Name="kodecustomer" ColumnName="kodecustomer" />
+          <ScalarProperty Name="namacustomer" ColumnName="namacustomer" />
+          <ScalarProperty Name="alamatcustomer" ColumnName="alamatcustomer" />
+          <ScalarProperty Name="nohpcustomer" ColumnName="nohpcustomer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_detailtransaksi">
+      <EntityTypeMapping TypeName="db_raskomputerModel.tbl_detailtransaksi">
+        <MappingFragment StoreEntitySet="tbl_detailtransaksi">
+          <ScalarProperty Name="iddetailtransaksi" ColumnName="iddetailtransaksi" />
+          <ScalarProperty Name="kodetransaksi" ColumnName="kodetransaksi" />
+          <ScalarProperty Name="namaproduk" ColumnName="namaproduk" />
+          <ScalarProperty Name="namacustomer" ColumnName="namacustomer" />
+          <ScalarProperty Name="harga" ColumnName="harga" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="grandtotal" ColumnName="grandtotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_produk">
+      <EntityTypeMapping TypeName="db_raskomputerModel.tbl_produk">
+        <MappingFragment StoreEntitySet="tbl_produk">
+          <ScalarProperty Name="kodeproduk" ColumnName="kodeproduk" />
+          <ScalarProperty Name="namaproduk" ColumnName="namaproduk" />
+          <ScalarProperty Name="hargaproduk" ColumnName="hargaproduk" />
+          <ScalarProperty Name="jumlahproduk" ColumnName="jumlahproduk" />
+          <ScalarProperty Name="satuanproduk" ColumnName="satuanproduk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_transaksi">
+      <EntityTypeMapping TypeName="db_raskomputerModel.tbl_transaksi">
+        <MappingFragment StoreEntitySet="tbl_transaksi">
+          <ScalarProperty Name="kodetransaksi" ColumnName="kodetransaksi" />
+          <ScalarProperty Name="tanggal" ColumnName="tanggal" />
+          <ScalarProperty Name="namacustomer" ColumnName="namacustomer" />
+          <ScalarProperty Name="dibayar" ColumnName="dibayar" />
+          <ScalarProperty Name="kembalian" ColumnName="kembalian" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_user">
+      <EntityTypeMapping TypeName="db_raskomputerModel.tbl_user">
+        <MappingFragment StoreEntitySet="tbl_user">
+          <ScalarProperty Name="kodeuser" ColumnName="kodeuser" />
+          <ScalarProperty Name="namauser" ColumnName="namauser" />
+          <ScalarProperty Name="passworduser" ColumnName="passworduser" />
+          <ScalarProperty Name="leveluser" ColumnName="leveluser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

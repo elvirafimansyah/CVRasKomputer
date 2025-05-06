@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_raskomputerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_customer">
+    <Key>
+      <PropertyRef Name="kodecustomer" />
+    </Key>
+    <Property Name="kodecustomer" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="namacustomer" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="alamatcustomer" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="nohpcustomer" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_detailtransaksi">
+    <Key>
+      <PropertyRef Name="iddetailtransaksi" />
+    </Key>
+    <Property Name="iddetailtransaksi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kodetransaksi" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="namaproduk" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="namacustomer" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="harga" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="qty" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="grandtotal" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_produk">
+    <Key>
+      <PropertyRef Name="kodeproduk" />
+    </Key>
+    <Property Name="kodeproduk" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="namaproduk" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="hargaproduk" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="jumlahproduk" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="satuanproduk" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_transaksi">
+    <Key>
+      <PropertyRef Name="kodetransaksi" />
+    </Key>
+    <Property Name="kodetransaksi" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="tanggal" Type="date" Nullable="false" />
+    <Property Name="namacustomer" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dibayar" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="kembalian" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="kodeuser" />
+    </Key>
+    <Property Name="kodeuser" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="namauser" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="passworduser" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="leveluser" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="db_raskomputerModelStoreContainer">
+    <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_detailtransaksi" EntityType="Self.tbl_detailtransaksi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_produk" EntityType="Self.tbl_produk" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_transaksi" EntityType="Self.tbl_transaksi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_user" EntityType="Self.tbl_user" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
